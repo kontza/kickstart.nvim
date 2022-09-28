@@ -33,6 +33,7 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
 
+  use 'jose-elias-alvarez/null-ls.nvim'
   if is_bootstrap then
     require('packer').sync()
   end
