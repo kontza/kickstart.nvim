@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/monokai.nvim",
     url = "https://github.com/tanvirtin/monokai.nvim"
   },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/nvim-cmp",

@@ -9,23 +9,23 @@ end
 
 -- stylua: ignore start
 require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'                                                         -- Package manager
-  use 'tpope/vim-fugitive'                                                             -- Git commands in nvim
-  use 'tpope/vim-rhubarb'                                                              -- Fugitive-companion to interact with github
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }            -- Add git related info in the signs columns and popups
-  use 'numToStr/Comment.nvim'                                                          -- "gc" to comment visual regions/lines
-  use 'nvim-treesitter/nvim-treesitter'                                                -- Highlight, edit, and navigate code
+  use 'wbthomason/packer.nvim' -- Package manager
+  use 'tpope/vim-fugitive' -- Git commands in nvim
+  use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
+  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Add git related info in the signs columns and popups
+  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+  use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code
   use { 'nvim-treesitter/nvim-treesitter-textobjects', after = { 'nvim-treesitter' } } -- Additional textobjects for treesitter
-  use 'neovim/nvim-lspconfig'                                                          -- Collection of configurations for built-in LSP client
-  use 'williamboman/mason.nvim'                                                        -- Manage external editor tooling i.e LSP servers
-  use 'williamboman/mason-lspconfig.nvim'                                              -- Automatically install language servers to stdpath
-  use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }                    -- Autocompletion
-  use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } }                -- Snippet Engine and Snippet Expansion
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'williamboman/mason.nvim' -- Manage external editor tooling i.e LSP servers
+  use 'williamboman/mason-lspconfig.nvim' -- Automatically install language servers to stdpath
+  use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } } -- Autocompletion
+  use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
   -- use 'mjlbach/onedark.nvim'                                                           -- Theme inspired by Atom
   use 'tanvirtin/monokai.nvim'
-  use 'nvim-lualine/lualine.nvim'                                                      -- Fancier statusline
-  use 'lukas-reineke/indent-blankline.nvim'                                            -- Add indentation guides even on blank lines
-  use 'tpope/vim-sleuth'                                                               -- Detect tabstop and shiftwidth automatically
+  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -394,6 +394,33 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+local null_ls = require("null-ls")
+local nlsfmt = null_ls.builtins.formatting
+local nlsdiag = null_ls.builtins.diagnostics
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
+  -- you can reuse a shared lspconfig on_attach callback here
+  sources = {
+    nlsfmt.prettier.with { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
+    nlsfmt.black.with { extra_args = { "--fast" } },
+    nlsfmt.stylua,
+    nlsdiag.flake8,
+  },
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+          vim.lsp.buf.formatting_sync()
+        end,
+      })
+    end
+  end,
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
