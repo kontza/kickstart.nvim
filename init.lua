@@ -124,7 +124,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help lualine.txt`
 require('lualine').setup {
   options = {
-    icons_enabled = true,
+    icons_enabled = false,
     theme = 'everforest',
     component_separators = '|',
     section_separators = '',
@@ -395,22 +395,22 @@ cmp.setup {
   },
 }
 
-local null_ls = require("null-ls")
+local null_ls = require 'null-ls'
 local nlsfmt = null_ls.builtins.formatting
 local nlsdiag = null_ls.builtins.diagnostics
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-null_ls.setup({
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+null_ls.setup {
   -- you can reuse a shared lspconfig on_attach callback here
   sources = {
-    nlsfmt.prettier.with { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
-    nlsfmt.black.with { extra_args = { "--fast" } },
+    nlsfmt.prettier.with { extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote' } },
+    nlsfmt.black.with { extra_args = { '--fast' } },
     nlsfmt.stylua,
     nlsdiag.flake8,
   },
   on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
+    if client.supports_method 'textDocument/formatting' then
+      vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+      vim.api.nvim_create_autocmd('BufWritePre', {
         group = augroup,
         buffer = bufnr,
         callback = function()
@@ -420,7 +420,7 @@ null_ls.setup({
       })
     end
   end,
-})
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
