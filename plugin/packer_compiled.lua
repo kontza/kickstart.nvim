@@ -79,6 +79,16 @@ _G.packer_plugins = {
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["ansible-vim"] = {
+    loaded = true,
+    path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/ansible-vim",
+    url = "https://github.com/pearofducks/ansible-vim"
+  },
+  ["bullets.vim"] = {
+    loaded = true,
+    path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/bullets.vim",
+    url = "https://github.com/dkarter/bullets.vim"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -123,6 +133,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["minimap.vim"] = {
+    loaded = true,
+    path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/minimap.vim",
+    url = "https://github.com/wfxr/minimap.vim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -179,6 +194,11 @@ _G.packer_plugins = {
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["vim-fish-syntax"] = {
+    loaded = true,
+    path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/vim-fish-syntax",
+    url = "https://github.com/khaveesh/vim-fish-syntax"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/vim-fugitive",
@@ -198,6 +218,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/vim-solarized8",
     url = "https://github.com/lifepillar/vim-solarized8"
+  },
+  ["wiki.vim"] = {
+    loaded = true,
+    path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/wiki.vim",
+    url = "https://github.com/lervag/wiki.vim"
   }
 }
 

@@ -37,6 +37,11 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
 
   use 'jose-elias-alvarez/null-ls.nvim'
+  use 'lervag/wiki.vim'
+  use 'khaveesh/vim-fish-syntax'
+  use 'dkarter/bullets.vim'
+  use 'pearofducks/ansible-vim'
+  use 'wfxr/minimap.vim'
   if is_bootstrap then
     require('packer').sync()
   end
@@ -66,6 +71,19 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
+vim.g.minimap_auto_start = true
+vim.g.ansible_unindent_after_newline = true
+vim.g.wiki_root = '~/Ambientia/BoostNote.Next'
+vim.g.wiki_filetypes = { 'md' }
+vim.g.wiki_link_extension = '.md'
+vim.g.wiki_export = {
+  args = '-s -V "mainfont:Helvetica,sans-serif"',
+  from_format = 'markdown',
+  ext = 'html',
+  link_ext_replace = false,
+  view = true,
+  output = 'export',
+}
 
 -- Set highlight on search
 vim.o.hlsearch = false
