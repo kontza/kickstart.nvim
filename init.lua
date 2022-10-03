@@ -15,6 +15,7 @@ require('packer').startup(function(use)
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Add git related info in the signs columns and popups
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code
+  use 'nvim-treesitter/nvim-treesitter-context'
   use { 'nvim-treesitter/nvim-treesitter-textobjects', after = { 'nvim-treesitter' } } -- Additional textobjects for treesitter
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'williamboman/mason.nvim' -- Manage external editor tooling i.e LSP servers
@@ -22,10 +23,12 @@ require('packer').startup(function(use)
   use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } } -- Autocompletion
   use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
   -- use 'mjlbach/onedark.nvim'                                                           -- Theme inspired by Atom
-  use 'tanvirtin/monokai.nvim'
+  use 'lifepillar/vim-solarized8'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use {'junegunn/fzf', run = ":call fzf#install()" }
+  use {'junegunn/fzf.vim'}
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -69,12 +72,17 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 6
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
 -- Enable break indent
 vim.o.breakindent = true
+vim.opt.smartindent = true
+vim.opt.wrap = false
+-- vim.opt.guicursor = ''
 
 -- Save undo history
 vim.o.undofile = true
@@ -88,8 +96,9 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
-vim.o.termguicolors = true
-vim.cmd [[colorscheme monokai]]
+vim.o.termguicolors = false
+-- vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme solarized8]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -100,6 +109,9 @@ vim.o.completeopt = 'menuone,noselect'
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- Fzf on Ctrl-P
+vim.keymap.set('n', '<C-p>', ':Files<cr>')
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
