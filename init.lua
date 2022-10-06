@@ -23,7 +23,8 @@ require('packer').startup(function(use)
   use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } } -- Autocompletion
   use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
   -- use 'mjlbach/onedark.nvim'                                                           -- Theme inspired by Atom
-  use 'lifepillar/vim-solarized8'
+  -- use 'lifepillar/vim-solarized8'
+  use 'morhetz/gruvbox'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -41,7 +42,7 @@ require('packer').startup(function(use)
   use 'khaveesh/vim-fish-syntax'
   use 'dkarter/bullets.vim'
   use 'pearofducks/ansible-vim'
-  use 'wfxr/minimap.vim'
+  use 'kyazdani42/nvim-web-devicons'
   if is_bootstrap then
     require('packer').sync()
   end
@@ -71,7 +72,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
-vim.g.minimap_auto_start = true
+vim.g.bullets_delete_last_bullet_if_empty = true
 vim.g.ansible_unindent_after_newline = true
 vim.g.wiki_root = '~/Ambientia/BoostNote.Next'
 vim.g.wiki_filetypes = { 'md' }
@@ -116,7 +117,8 @@ vim.wo.signcolumn = 'yes'
 -- Set colorscheme
 vim.o.termguicolors = false
 -- vim.cmd [[colorscheme onedark]]
-vim.cmd [[colorscheme solarized8]]
+-- vim.cmd [[colorscheme solarized8]]
+vim.cmd [[colorscheme gruvbox]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -452,5 +454,13 @@ null_ls.setup {
   end,
 }
 
+require('nvim-web-devicons').setup {
+  -- globally enable different highlight colors per icon (default to true)
+  -- if set to false all icons will have the default icon's color
+  color_icons = true,
+  -- globally enable default icons (default to false)
+  -- will get overriden by `get_icons` option
+  default = true,
+}
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
