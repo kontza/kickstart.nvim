@@ -43,6 +43,10 @@ require('packer').startup(function(use)
   use 'dkarter/bullets.vim'
   use 'pearofducks/ansible-vim'
   use 'kyazdani42/nvim-web-devicons'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
   if is_bootstrap then
     require('packer').sync()
   end
@@ -130,8 +134,10 @@ vim.o.completeopt = 'menuone,noselect'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Fzf on Ctrl-P
+-- Fzf Files on Ctrl-P
 vim.keymap.set('n', '<C-p>', ':Files<cr>')
+-- Fzf Commands on <leader>c
+vim.keymap.set('n', '<leader>c', ':Commands<cr>')
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
