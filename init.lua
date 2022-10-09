@@ -22,9 +22,7 @@ require('packer').startup(function(use)
   use 'williamboman/mason-lspconfig.nvim' -- Automatically install language servers to stdpath
   use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } } -- Autocompletion
   use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
-  -- use 'mjlbach/onedark.nvim'                                                           -- Theme inspired by Atom
-  -- use 'lifepillar/vim-solarized8'
-  use 'morhetz/gruvbox'
+  use 'mjlbach/onedark.nvim'                                                           -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -47,6 +45,37 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  use { 'johmsalas/text-case.nvim',
+    config = function()
+      require('textcase').setup {
+      }
+      require('telescope').load_extension('textcase')
+      vim.api.nvim_set_keymap('n', 'ga.', '<cmd>TextCaseOpenTelescope<CR>', { desc = "Telescope" })
+      vim.api.nvim_set_keymap('v', 'ga.', "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
+      vim.api.nvim_set_keymap('n', 'gaa', "<cmd>TextCaseOpenTelescopeQuickChange<CR>", { desc = "Telescope Quick Change" })
+      vim.api.nvim_set_keymap('n', 'gai', "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
+    end
+  }
+  use 'tpope/vim-surround'
+  use {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup {}
+    end
+  }
+  use {
+    'lewis6991/spaceless.nvim',
+    config = function()
+      require'spaceless'.setup()
+    end
+  }
+  -- If you want insert `(` after select function or method item
+  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+  local cmp = require('cmp')
+  cmp.event:on(
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
+  )
   if is_bootstrap then
     require('packer').sync()
   end
@@ -74,8 +103,29 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = vim.fn.expand '$MYVIMRC',
 })
 
+-- Diagnostic messages as a popup
+vim.api.nvim_create_autocmd('CursorHold', {
+  buffer = bufnr,
+  callback = function()
+    local opts = {
+      focusable = false,
+      close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+      border = 'rounded',
+      source = 'always',
+      prefix = ' ',
+      scope = 'cursor',
+    }
+    vim.diagnostic.open_float(nil, opts)
+  end,
+})
+vim.o.updatetime = 250
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
+vim.g.better_whitespace_enabled = true
+vim.g.strip_whitespace_on_save = true
+vim.g.strip_only_modified_lines = true
 vim.g.bullets_delete_last_bullet_if_empty = true
 vim.g.ansible_unindent_after_newline = true
 vim.g.wiki_root = '~/Ambientia/BoostNote.Next'
@@ -120,9 +170,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = false
--- vim.cmd [[colorscheme onedark]]
--- vim.cmd [[colorscheme solarized8]]
-vim.cmd [[colorscheme gruvbox]]
+vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -163,7 +211,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'everforest',
+    theme = 'onedark',
     component_separators = '|',
     section_separators = '',
   },
