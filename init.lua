@@ -22,6 +22,7 @@ require('packer').startup(function(use)
   use 'williamboman/mason-lspconfig.nvim' -- Automatically install language servers to stdpath
   use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } } -- Autocompletion
   use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
+  use 'rafamadriz/friendly-snippets'
   -- use 'mjlbach/onedark.nvim'                                                           -- Theme inspired by Atom
   use {
     "catppuccin/nvim",
@@ -29,9 +30,23 @@ require('packer').startup(function(use)
     config = function()
       vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
       vim.o.termguicolors = true
-      require("catppuccin").setup()
+      local colors = require("catppuccin.palettes").get_palette()
+      colors.none = "NONE"
+      require("catppuccin").setup {
+        custom_highlights = {
+          Comment = { fg = colors.overlay1 },
+          LineNr = { fg = colors.overlay1 },
+          CursorLine = { bg = colors.none },
+          CursorLineNr = { fg = colors.lavender },
+          DiagnosticVirtualTextError = { bg = colors.none },
+          DiagnosticVirtualTextWarn = { bg = colors.none },
+          DiagnosticVirtualTextInfo = { bg = colors.none },
+          DiagnosticVirtualTextHint = { bg = colors.none },
+        }
+      }
       vim.api.nvim_command "colorscheme catppuccin"
-    end
+    end,
+    run = ":CatppuccinCompile"
   }
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
@@ -179,7 +194,7 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
--- vim.o.termguicolors = true
+vim.o.termguicolors = true
 -- vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
