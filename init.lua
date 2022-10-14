@@ -157,7 +157,7 @@ vim.g.wiki_root = '~/Ambientia/BoostNote.Next'
 vim.g.wiki_filetypes = { 'md' }
 vim.g.wiki_link_extension = '.md'
 vim.g.wiki_export = {
-  args = '-s -V "mainfont:Helvetica,sans-serif"',
+  args = '-s -H /Users/juharu/Ambientia/BoostNote.Next/export.css -V "mainfont:Helvetica,sans-serif"',
   from_format = 'markdown',
   ext = 'html',
   link_ext_replace = false,
@@ -385,6 +385,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
+  nmap('<leader>wp', '<cmd>WikiExport<CR>', 'Export current markdown')
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('gr', require('telescope.builtin').lsp_references)
@@ -452,12 +453,8 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-local lsp_config = require('lspconfig')
-lsp_config.util.default_config = vim.tbl_deep_extend(
-  'force',
-  lsp_config.util.default_config,
-  lsp_defaults
-)
+local lsp_config = require 'lspconfig'
+lsp_config.util.default_config = vim.tbl_deep_extend('force', lsp_config.util.default_config, lsp_defaults)
 lsp_config.sumneko_lua.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -483,7 +480,7 @@ lsp_config.sumneko_lua.setup {
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
-local select_opts = {behavior = cmp.SelectBehavior.Select}
+local select_opts = { behavior = cmp.SelectBehavior.Select }
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -494,13 +491,13 @@ cmp.setup {
     { name = 'path' },
     { name = 'nvim_lsp', keyword_length = 3 },
     { name = 'luasnip', keyword_length = 2 },
-    { name = 'buffer', keyword_length = 3 }
+    { name = 'buffer', keyword_length = 3 },
   },
   window = {
-    documentation = cmp.config.window.bordered
+    documentation = cmp.config.window.bordered,
   },
   formatting = {
-    fields = {'menu', 'abbr', 'kind'},
+    fields = { 'menu', 'abbr', 'kind' },
     format = function(entry, item)
       local menu_icon = {
         nvim_lsp = 'λ',
@@ -524,7 +521,7 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({select = true}),
+    ['<CR>'] = cmp.mapping.confirm { select = true },
 
     ['<C-d>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
@@ -532,7 +529,7 @@ cmp.setup {
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
 
     ['<C-b>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(-1) then
@@ -540,19 +537,19 @@ cmp.setup {
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
 
     ['<Tab>'] = cmp.mapping(function(fallback)
-      local col = vim.fn.col('.') - 1
+      local col = vim.fn.col '.' - 1
 
       if cmp.visible() then
         cmp.select_next_item(select_opts)
-      elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+      elseif col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' then
         fallback()
       else
         cmp.complete()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
 
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -560,7 +557,7 @@ cmp.setup {
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
   },
 }
 
@@ -604,16 +601,16 @@ local sign = function(opts)
   vim.fn.sign_define(opts.name, {
     texthl = opts.name,
     text = opts.text,
-    numhl = ''
+    numhl = '',
   })
 end
 
-sign({name = 'DiagnosticSignError', text = '✘'})
-sign({name = 'DiagnosticSignWarn', text = '▲'})
-sign({name = 'DiagnosticSignHint', text = '⚑'})
-sign({name = 'DiagnosticSignInfo', text = ''})
+sign { name = 'DiagnosticSignError', text = '✘' }
+sign { name = 'DiagnosticSignWarn', text = '▲' }
+sign { name = 'DiagnosticSignHint', text = '⚑' }
+sign { name = 'DiagnosticSignInfo', text = '' }
 
-vim.diagnostic.config({
+vim.diagnostic.config {
   virtual_text = false,
   severity_sort = true,
   float = {
@@ -622,16 +619,10 @@ vim.diagnostic.config({
     header = '',
     prefix = '',
   },
-})
+}
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-  vim.lsp.handlers.hover,
-  {border = 'rounded'}
-)
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
 
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-  vim.lsp.handlers.signature_help,
-  {border = 'rounded'}
-)
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
