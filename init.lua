@@ -30,19 +30,13 @@ require('packer').startup(function(use)
     config = function()
       vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
       vim.o.termguicolors = true
-      local colors = require("catppuccin.palettes").get_palette()
-      colors.none = "NONE"
       require("catppuccin").setup {
-        custom_highlights = {
-          Comment = { fg = colors.overlay1 },
-          LineNr = { fg = colors.overlay1 },
-          CursorLine = { bg = colors.none },
-          CursorLineNr = { fg = colors.lavender },
-          DiagnosticVirtualTextError = { bg = colors.none },
-          DiagnosticVirtualTextWarn = { bg = colors.none },
-          DiagnosticVirtualTextInfo = { bg = colors.none },
-          DiagnosticVirtualTextHint = { bg = colors.none },
-        }
+        dim_inactive = {
+          enabled = true,
+          shade = "dark",
+          percentage = 0.15,
+        },
+        transparent_background = true,
       }
       vim.api.nvim_command "colorscheme catppuccin"
     end,
@@ -148,6 +142,7 @@ vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
+vim.o.winbar = '%=%m %f'
 vim.g.better_whitespace_enabled = true
 vim.g.strip_whitespace_on_save = true
 vim.g.strip_only_modified_lines = true
@@ -235,8 +230,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help lualine.txt`
 require('lualine').setup {
   options = {
-    icons_enabled = false,
+    icons_enabled = true,
     theme = 'catppuccin',
+    -- theme = 'wombat',
     component_separators = '|',
     section_separators = '',
   },
@@ -589,6 +585,7 @@ null_ls.setup {
     nlsfmt.black.with { extra_args = { '--fast' } },
     nlsfmt.stylua,
     nlsfmt.rustfmt,
+    nlsfmt.mdformat,
     nlsdiag.flake8,
   },
   on_attach = function(client, bufnr)
