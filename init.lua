@@ -366,8 +366,25 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- LSP settings.
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
+  if client.supports_method 'textDocument/formatting' then
+    vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format {
+          filter = function(client)
+            return client.name == 'null-ls'
+          end,
+          bufnr = bufnr,
+        }
+      end,
+    })
+  end
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -417,7 +434,7 @@ local on_attach = function(_, bufnr)
 end
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
@@ -494,7 +511,8 @@ cmp.setup {
     { name = 'buffer', keyword_length = 3 },
   },
   window = {
-    documentation = cmp.config.window.bordered,
+    -- documentation = cmp.config.window.bordered,
+    -- completion = cmp.config.window.bordered,
   },
   formatting = {
     fields = { 'menu', 'abbr', 'kind' },
@@ -564,13 +582,13 @@ cmp.setup {
 local null_ls = require 'null-ls'
 local nlsfmt = null_ls.builtins.formatting
 local nlsdiag = null_ls.builtins.diagnostics
-local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 null_ls.setup {
   -- you can reuse a shared lspconfig on_attach callback here
   sources = {
     nlsfmt.prettier.with { extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote' } },
     nlsfmt.black.with { extra_args = { '--fast' } },
     nlsfmt.stylua,
+    nlsfmt.rustfmt,
     nlsdiag.flake8,
   },
   on_attach = function(client, bufnr)
