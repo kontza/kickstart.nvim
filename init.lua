@@ -42,6 +42,7 @@ require('packer').startup(function(use)
     end,
     run = ":CatppuccinCompile"
   }
+  use 'kyazdani42/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -59,7 +60,6 @@ require('packer').startup(function(use)
   use 'khaveesh/vim-fish-syntax'
   use 'dkarter/bullets.vim'
   use 'pearofducks/ansible-vim'
-  use 'kyazdani42/nvim-web-devicons'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
