@@ -143,6 +143,7 @@ vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {
 -- [[ Setting options ]]
 -- See `:help vim.o`
 vim.o.winbar = '%=%m %f'
+vim.o.list = true
 vim.g.better_whitespace_enabled = true
 vim.g.strip_whitespace_on_save = true
 vim.g.strip_only_modified_lines = true
@@ -231,7 +232,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'catppuccin',
+    theme = 'nord',
     -- theme = 'wombat',
     component_separators = '|',
     section_separators = '',
