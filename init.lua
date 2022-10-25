@@ -582,11 +582,28 @@ local nlsdiag = null_ls.builtins.diagnostics
 null_ls.setup {
   -- you can reuse a shared lspconfig on_attach callback here
   sources = {
-    nlsfmt.prettier.with { extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote' } },
+    nlsfmt.prettier.with {
+      extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote' },
+      filetypes = {
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
+        'vue',
+        'css',
+        'scss',
+        'less',
+        'html',
+        'json',
+        'jsonc',
+        'yaml',
+        'graphql',
+        'handlebars',
+      },
+    },
     nlsfmt.black.with { extra_args = { '--fast' } },
     nlsfmt.stylua,
     nlsfmt.rustfmt,
-    nlsfmt.mdformat,
     nlsdiag.flake8,
   },
   on_attach = function(client, bufnr)
