@@ -95,7 +95,7 @@ _G.packer_plugins = {
     url = "https://github.com/dkarter/bullets.vim"
   },
   catppuccin = {
-    config = { "\27LJ\2\n¤\2\0\0\4\0\15\0\0226\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\4\0+\1\2\0=\1\5\0006\0\6\0'\2\a\0B\0\2\0029\0\b\0005\2\n\0005\3\t\0=\3\v\2B\0\2\0016\0\0\0009\0\f\0009\0\r\0'\2\14\0B\0\2\1K\0\1\0\27colorscheme catppuccin\17nvim_command\bapi\17dim_inactive\1\0\1\27transparent_background\2\1\0\3\15percentage\4³æÌ™\3³æŒþ\3\nshade\tdark\fenabled\2\nsetup\15catppuccin\frequire\18termguicolors\6o\nmocha\23catppuccin_flavour\6g\bvim\0" },
+    config = { "\27LJ\2\n¤\2\0\0\4\0\15\0\0226\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\4\0+\1\2\0=\1\5\0006\0\6\0'\2\a\0B\0\2\0029\0\b\0005\2\n\0005\3\t\0=\3\v\2B\0\2\0016\0\0\0009\0\f\0009\0\r\0'\2\14\0B\0\2\1K\0\1\0\27colorscheme catppuccin\17nvim_command\bapi\17dim_inactive\1\0\1\27transparent_background\2\1\0\3\nshade\tdark\fenabled\2\15percentage\4³æÌ™\3³æŒþ\3\nsetup\15catppuccin\frequire\18termguicolors\6o\nmocha\23catppuccin_flavour\6g\bvim\0" },
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
@@ -281,6 +281,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: spaceless.nvim
+time([[Config for spaceless.nvim]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14spaceless\frequire\0", "config", "spaceless.nvim")
+time([[Config for spaceless.nvim]], false)
 -- Config for: text-case.nvim
 time([[Config for text-case.nvim]], true)
 try_loadstring("\27LJ\2\nä\3\0\0\6\0\20\0-6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\0016\0\0\0'\2\3\0B\0\2\0029\0\4\0'\2\1\0B\0\2\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\t\0'\4\n\0005\5\v\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\f\0'\3\t\0'\4\n\0005\5\r\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\14\0'\4\15\0005\5\16\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\17\0'\4\18\0005\5\19\0B\0\5\1K\0\1\0\1\0\1\tdesc\25Telescope LSP Change,<cmd>TextCaseOpenTelescopeLSPChange<CR>\bgai\1\0\1\tdesc\27Telescope Quick Change.<cmd>TextCaseOpenTelescopeQuickChange<CR>\bgaa\1\0\1\tdesc\14Telescope\6v\1\0\1\tdesc\14Telescope#<cmd>TextCaseOpenTelescope<CR>\bga.\6n\20nvim_set_keymap\bapi\bvim\19load_extension\14telescope\nsetup\rtextcase\frequire\0", "config", "text-case.nvim")
@@ -291,12 +295,8 @@ try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B
 time([[Config for nvim-autopairs]], false)
 -- Config for: catppuccin
 time([[Config for catppuccin]], true)
-try_loadstring("\27LJ\2\n¤\2\0\0\4\0\15\0\0226\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\4\0+\1\2\0=\1\5\0006\0\6\0'\2\a\0B\0\2\0029\0\b\0005\2\n\0005\3\t\0=\3\v\2B\0\2\0016\0\0\0009\0\f\0009\0\r\0'\2\14\0B\0\2\1K\0\1\0\27colorscheme catppuccin\17nvim_command\bapi\17dim_inactive\1\0\1\27transparent_background\2\1\0\3\15percentage\4³æÌ™\3³æŒþ\3\nshade\tdark\fenabled\2\nsetup\15catppuccin\frequire\18termguicolors\6o\nmocha\23catppuccin_flavour\6g\bvim\0", "config", "catppuccin")
+try_loadstring("\27LJ\2\n¤\2\0\0\4\0\15\0\0226\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\4\0+\1\2\0=\1\5\0006\0\6\0'\2\a\0B\0\2\0029\0\b\0005\2\n\0005\3\t\0=\3\v\2B\0\2\0016\0\0\0009\0\f\0009\0\r\0'\2\14\0B\0\2\1K\0\1\0\27colorscheme catppuccin\17nvim_command\bapi\17dim_inactive\1\0\1\27transparent_background\2\1\0\3\nshade\tdark\fenabled\2\15percentage\4³æÌ™\3³æŒþ\3\nsetup\15catppuccin\frequire\18termguicolors\6o\nmocha\23catppuccin_flavour\6g\bvim\0", "config", "catppuccin")
 time([[Config for catppuccin]], false)
--- Config for: spaceless.nvim
-time([[Config for spaceless.nvim]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14spaceless\frequire\0", "config", "spaceless.nvim")
-time([[Config for spaceless.nvim]], false)
 -- Conditional loads
 time([[Conditional loading of telescope-fzf-native.nvim]], true)
   require("packer.load")({"telescope-fzf-native.nvim"}, {}, _G.packer_plugins)
