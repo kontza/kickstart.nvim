@@ -170,13 +170,18 @@ _G.packer_plugins = {
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  neogit = {
+    loaded = true,
+    path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/neogit",
+    url = "https://github.com/TimUntersberger/neogit"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-autopairs"] = {
-    config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
+    config = { "\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
@@ -243,7 +248,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["text-case.nvim"] = {
-    config = { "\27LJ\2\nä\3\0\0\6\0\20\0-6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\0016\0\0\0'\2\3\0B\0\2\0029\0\4\0'\2\1\0B\0\2\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\t\0'\4\n\0005\5\v\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\f\0'\3\t\0'\4\n\0005\5\r\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\14\0'\4\15\0005\5\16\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\17\0'\4\18\0005\5\19\0B\0\5\1K\0\1\0\1\0\1\tdesc\25Telescope LSP Change,<cmd>TextCaseOpenTelescopeLSPChange<CR>\bgai\1\0\1\tdesc\27Telescope Quick Change.<cmd>TextCaseOpenTelescopeQuickChange<CR>\bgaa\1\0\1\tdesc\14Telescope\6v\1\0\1\tdesc\14Telescope#<cmd>TextCaseOpenTelescope<CR>\bga.\6n\20nvim_set_keymap\bapi\bvim\19load_extension\14telescope\nsetup\rtextcase\frequire\0" },
+    config = { "\27LJ\2\nà\3\0\0\6\0\20\0,6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\4\0'\2\1\0B\0\2\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\t\0'\4\n\0005\5\v\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\f\0'\3\t\0'\4\n\0005\5\r\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\14\0'\4\15\0005\5\16\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\17\0'\4\18\0005\5\19\0B\0\5\1K\0\1\0\1\0\1\tdesc\25Telescope LSP Change,<cmd>TextCaseOpenTelescopeLSPChange<CR>\bgai\1\0\1\tdesc\27Telescope Quick Change.<cmd>TextCaseOpenTelescopeQuickChange<CR>\bgaa\1\0\1\tdesc\14Telescope\6v\1\0\1\tdesc\14Telescope#<cmd>TextCaseOpenTelescope<CR>\bga.\6n\20nvim_set_keymap\bapi\bvim\19load_extension\14telescope\nsetup\rtextcase\frequire\0" },
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/text-case.nvim",
     url = "https://github.com/johmsalas/text-case.nvim"
@@ -252,11 +257,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/vim-fish-syntax",
     url = "https://github.com/khaveesh/vim-fish-syntax"
-  },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/vim-fugitive",
-    url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-rhubarb"] = {
     loaded = true,
@@ -273,6 +273,12 @@ _G.packer_plugins = {
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
   },
+  ["which-key.nvim"] = {
+    config = { "\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0" },
+    loaded = true,
+    path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
+  },
   ["wiki.vim"] = {
     loaded = true,
     path = "/Users/juharu/.local/share/nvim/site/pack/packer/start/wiki.vim",
@@ -281,22 +287,26 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: spaceless.nvim
-time([[Config for spaceless.nvim]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14spaceless\frequire\0", "config", "spaceless.nvim")
-time([[Config for spaceless.nvim]], false)
 -- Config for: text-case.nvim
 time([[Config for text-case.nvim]], true)
-try_loadstring("\27LJ\2\nä\3\0\0\6\0\20\0-6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\0016\0\0\0'\2\3\0B\0\2\0029\0\4\0'\2\1\0B\0\2\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\t\0'\4\n\0005\5\v\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\f\0'\3\t\0'\4\n\0005\5\r\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\14\0'\4\15\0005\5\16\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\17\0'\4\18\0005\5\19\0B\0\5\1K\0\1\0\1\0\1\tdesc\25Telescope LSP Change,<cmd>TextCaseOpenTelescopeLSPChange<CR>\bgai\1\0\1\tdesc\27Telescope Quick Change.<cmd>TextCaseOpenTelescopeQuickChange<CR>\bgaa\1\0\1\tdesc\14Telescope\6v\1\0\1\tdesc\14Telescope#<cmd>TextCaseOpenTelescope<CR>\bga.\6n\20nvim_set_keymap\bapi\bvim\19load_extension\14telescope\nsetup\rtextcase\frequire\0", "config", "text-case.nvim")
+try_loadstring("\27LJ\2\nà\3\0\0\6\0\20\0,6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\4\0'\2\1\0B\0\2\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\t\0'\4\n\0005\5\v\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\f\0'\3\t\0'\4\n\0005\5\r\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\14\0'\4\15\0005\5\16\0B\0\5\0016\0\5\0009\0\6\0009\0\a\0'\2\b\0'\3\17\0'\4\18\0005\5\19\0B\0\5\1K\0\1\0\1\0\1\tdesc\25Telescope LSP Change,<cmd>TextCaseOpenTelescopeLSPChange<CR>\bgai\1\0\1\tdesc\27Telescope Quick Change.<cmd>TextCaseOpenTelescopeQuickChange<CR>\bgaa\1\0\1\tdesc\14Telescope\6v\1\0\1\tdesc\14Telescope#<cmd>TextCaseOpenTelescope<CR>\bga.\6n\20nvim_set_keymap\bapi\bvim\19load_extension\14telescope\nsetup\rtextcase\frequire\0", "config", "text-case.nvim")
 time([[Config for text-case.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
 -- Config for: catppuccin
 time([[Config for catppuccin]], true)
 try_loadstring("\27LJ\2\n¤\2\0\0\4\0\15\0\0226\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\4\0+\1\2\0=\1\5\0006\0\6\0'\2\a\0B\0\2\0029\0\b\0005\2\n\0005\3\t\0=\3\v\2B\0\2\0016\0\0\0009\0\f\0009\0\r\0'\2\14\0B\0\2\1K\0\1\0\27colorscheme catppuccin\17nvim_command\bapi\17dim_inactive\1\0\1\27transparent_background\2\1\0\3\nshade\tdark\fenabled\2\15percentage\4³æÌ™\3³æŒþ\3\nsetup\15catppuccin\frequire\18termguicolors\6o\nmocha\23catppuccin_flavour\6g\bvim\0", "config", "catppuccin")
 time([[Config for catppuccin]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
+time([[Config for which-key.nvim]], false)
+-- Config for: spaceless.nvim
+time([[Config for spaceless.nvim]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14spaceless\frequire\0", "config", "spaceless.nvim")
+time([[Config for spaceless.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
 -- Conditional loads
 time([[Conditional loading of telescope-fzf-native.nvim]], true)
   require("packer.load")({"telescope-fzf-native.nvim"}, {}, _G.packer_plugins)

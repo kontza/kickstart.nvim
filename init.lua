@@ -10,7 +10,8 @@ end
 -- stylua: ignore start
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
-  use 'tpope/vim-fugitive' -- Git commands in nvim
+  -- use 'tpope/vim-fugitive' -- Git commands in nvim
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Add git related info in the signs columns and popups
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
@@ -46,8 +47,8 @@ require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
-  use {'junegunn/fzf', run = ":call fzf#install()" }
-  use {'junegunn/fzf.vim'}
+  use { 'junegunn/fzf', run = ":call fzf#install()" }
+  use { 'junegunn/fzf.vim' }
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -66,12 +67,12 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use { 'johmsalas/text-case.nvim',
     config = function()
-      require('textcase').setup {
-      }
+      require('textcase').setup()
       require('telescope').load_extension('textcase')
       vim.api.nvim_set_keymap('n', 'ga.', '<cmd>TextCaseOpenTelescope<CR>', { desc = "Telescope" })
       vim.api.nvim_set_keymap('v', 'ga.', "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
-      vim.api.nvim_set_keymap('n', 'gaa', "<cmd>TextCaseOpenTelescopeQuickChange<CR>", { desc = "Telescope Quick Change" })
+      vim.api.nvim_set_keymap('n', 'gaa', "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
+        { desc = "Telescope Quick Change" })
       vim.api.nvim_set_keymap('n', 'gai', "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
     end
   }
@@ -79,13 +80,23 @@ require('packer').startup(function(use)
   use {
     "windwp/nvim-autopairs",
     config = function()
-      require("nvim-autopairs").setup {}
+      require('nvim-autopairs').setup()
     end
   }
   use {
     'lewis6991/spaceless.nvim',
     config = function()
-      require'spaceless'.setup()
+      require('spaceless').setup()
+    end
+  }
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
     end
   }
   -- If you want insert `(` after select function or method item
@@ -374,8 +385,8 @@ local on_attach = function(client, bufnr)
       buffer = bufnr,
       callback = function()
         vim.lsp.buf.format {
-          filter = function(client)
-            return client.name == 'null-ls'
+          filter = function(filter_client)
+            return filter_client.name == 'null-ls'
           end,
           bufnr = bufnr,
         }
@@ -437,7 +448,7 @@ local lsp_defaults = {
     debounce_text_changes = 150,
   },
   capabilities = capabilities,
-  on_attach = function(client, bufnr)
+  on_attach = function(_, _)
     vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
   end,
 }
@@ -614,7 +625,7 @@ null_ls.setup {
         buffer = bufnr,
         callback = function()
           -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-          vim.lsp.buf.formatting_sync()
+          vim.lsp.buf.format { bufnr = bufnr }
         end,
       })
     end
@@ -629,6 +640,7 @@ require('nvim-web-devicons').setup {
   -- will get overriden by `get_icons` option
   default = true,
 }
+require('neogit').setup()
 
 local sign = function(opts)
   vim.fn.sign_define(opts.name, {
