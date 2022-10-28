@@ -639,7 +639,6 @@ require('nvim-web-devicons').setup {
   -- will get overriden by `get_icons` option
   default = true,
 }
-require('neogit').setup()
 
 local sign = function(opts)
   vim.fn.sign_define(opts.name, {
