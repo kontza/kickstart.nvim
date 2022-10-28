@@ -218,6 +218,16 @@ vim.keymap.set('n', '<C-p>', ':Files<cr>')
 -- Fzf Commands on <leader>c
 vim.keymap.set('n', '<leader>c', ':Commands<cr>')
 
+-- System clipboard
+-- Copy to clipboard
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
+vim.keymap.set({ 'n', 'v' }, '<leader>Y', '"+yg')
+vim.keymap.set({ 'n' }, '<leader>yy', '"+yy')
+
+-- Paste from clipboard
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p')
+vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P')
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
